@@ -118,6 +118,39 @@ git push -u origin main
 
 * P(Ak|B) = (P(B | A) * P(A)) / P(B)
 
+```python
+def cookie_jar(a, b):
+    '''
+    There are two jars of cookies.
+    Each has chocolate and peanut butter cookies.
+    Input 'a' is the fraction of cookies in Jar A which are chocolate.
+    Input 'b' is the fraction of cookies in Jar B which are chocolate.
+    A jar is chosen at random and a cookie is drawn.
+    The cookie is chocolate.
+    Return the probability that the cookie came from Jar A.
+
+    Parameters
+    ----------
+    a: float
+        Probability of drawing a chocolate cooking from Jar A
+    b: float
+        Probability of drawing a chocolate cooking from Jar B
+
+    Returns
+    -------
+    float
+        Conditional probability that cookie was drawn from Jar A given
+        that a chocolate cookie was drawn.
+
+    Calculation
+    -----------
+
+    P(Jar A | Choc Cookie) = [P(Choc Cookie) * P(Jar A)] /
+                             [P(Choc Cookie) * P(Jar A) + [P(Choc Cookie) * P(Jar B)]
+    '''
+    return (a * 0.5) / (a * 0.5 + b * 0.5)
+```
+
 #### Cumulative distribution function
 
 * [CDF resources](https://learn-2.galvanize.com/cohorts/868/blocks/248/content_files/07_Continuous_Prob_Dists/00_unit_overview.md)
@@ -239,6 +272,8 @@ def pmf(p, x, n):
 ![95% CI](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/21125c3404bf0e14de6dcc164f71e5b1.png)
 
 ### Linear algebra
+
+* Grab length of the vector: `np.linalg.norm(x)`
 
 #### Matrix multiplication
 
@@ -731,6 +766,9 @@ for x, y in zip(x_miss_idx, y_miss_idx):
 mask = np.any(np.isnan(diabetes) | np.equal(diabetes, 0), axis=1)
 dbts_rmv_nan = diabetes[~mask]
 ```
+
+* creates an equally spaced grid of numbers between two endpoints.`np.linspace`
+* find index of the minimum: `np.argmin()`
 
 ---
 
