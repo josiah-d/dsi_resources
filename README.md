@@ -72,12 +72,11 @@ Last Update: 24 Apr 2021
 * create a new repository on the command line
 
 ```zsh
-echo "# gal_sdi" >> README.md
 git init
 git add .
 git commit -m "init commit"
 git branch -M main
-git remote add origin https://github.com/josiah-d/gal_sdi.git
+git remote add origin https://github.com/josiah-d/REPO_NAME.git
 git push -u origin main
 ```
 
