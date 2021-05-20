@@ -789,6 +789,24 @@ dbts_rmv_nan = diabetes[~mask]
 * `.transform`: Iterates through groups, operates on each value, e.g. subtracting mean
 * `.filter`: Check each group, removing groups that fall below a certain threshold
 * `.apply`: Can do all of the above, but it less efficient
+    * apply function to rows, specify columns and `axis=1`
+
+```python
+golf_df.apply(lambda x: x['Temperature'] + x['Humidity'], axis=1)
+```
+
+* cross tabulation frequency counts
+
+```python
+pd.crosstab(golf_df['Outlook'], golf_df['Result'])
+```
+
+* perform actions by DateTime
+
+```python
+date_df = golf_df.set_index('DateTime')  # Set index to DateTime object
+date_df.resample('W').mean()  # Action
+```
 
 ---
 
