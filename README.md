@@ -359,7 +359,10 @@ print(x)
 
 d(p<sup>&rarr;</sup>,q<sup>&rarr;</sup>) = sqrt((q<sub>1</sub>-p<sub>1</sub>)<sup>2</sup>+(q<sub>2</sub>-p<sub>2</sub>)<sup>2</sup>+...+(q<sub>n</sub>-p<sub>n</sub>)<sup>2</sup>) = sqrt((q<sup>&rarr;</sup>-p<sup>&rarr;</sup>)<sup>2</sup>)
 
-`euc_dist = dot(a,b) / (norm(a) * norm(b))`
+```python
+def euc_dist(arr0, arr1):
+    return np.linalg.norm(arr0 - arr1)
+```
 
 ```python
 import pandas as pd
@@ -401,6 +404,12 @@ p<sup>&rarr;</sup>*q<sup>&rarr;</sup> = ||p<sup>&rarr;</sup>|| * ||q<sup>&rarr;<
 * 1 = aligned, -1 = opposite, 0 = orthogonal
 
 sim(p<sup>&rarr;</sup>,q<sup>&rarr;</sup>) = cos&Theta; = p<sup>&rarr;</sup> * q<sup>&rarr;</sup> / ||p<sup>&rarr;</sup>|| * ||q<sup>&rarr;</sup>||
+
+
+```python
+def cosine_sim(arr0, arr1):
+    return (arr0 @ arr1) / (np.linalg.norm(arr0) * np.linalg.norm(arr1))
+```
 
 ##### Eigenvectors and Eigenvalues
 
