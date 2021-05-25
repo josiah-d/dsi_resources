@@ -1,21 +1,99 @@
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
 <span style="font-family: Menlo;">
 
 # Master Notes
 
-Last Update: 24 Apr 2021
+## Table of Contents
+
+1. [Data Science Immersive Pacific](#Data-Science-Immersive-Pacific)
+1. [Global](#Global)
+1. [CLI / UNIX](#CLI-/-UNIX)
+    1. [Basic Commands](#Basic-CLI-Commands)
+1. [Git & Github](#Git-&-Github)
+    1. [Basic Commands](#Basic-Git-Commands)
+    1. [Advanced Commands](#Advanced-Git-Commands)
+1. [Maths](#Maths)
+    1. [Stats](###Stats)
+        1. [Permutations](####Permutations)
+        1. [Combinations](####Combinations)
+        1. [Conditional probability](####Conditional-probability)
+        1. [Bayes' Theorem](####-Bayes'-Theorem)
+        1. [Probability mass function](####Probability-mass-function)
+        1. [Cumulative distribution function](####Cumulative-distribution-function)
+        1. [Expected Value](####Expected-value)
+        1. [Mean](####Mean)
+        1. [Covariance](####Covariance)
+        1. [Variance](####Variance)
+        1. [Correlation Coefficient](####Correlation-coefficient-(r))
+        1. [Discrete Distributions](####Discrete-Distributions)
+        1. [Continuous Distributions](####Continuous-distributions)
+        1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
+        1. [Hypothesis Testing](####Hypothesis-testing)
+        1. [Confidence Intervals](####Confidence-intervals)
+    1. [Linear Algebra](###Linear-algebra)
+        1. [Matrix Multiplication](####Matrixmultiplication)
+        1. [Identity Matrix](####Identity-matrix-(I<sub>m</sub>))
+        1. [Matrix Rank & Independence](####Matrix-rank-&-independence)
+        1. [Invertible Matrix](####Invertible-matrix)
+        1. [Matrix Rotation](####Matrix-rotation)
+        1. [Matrix Reflection](####Matrix-reflection)
+        1. [Systems of Equations](####Systems-of-equations-with-linear-algebra)
+        1. [Vector Similarity](####Vector-similiarity)
+            1. [Eigenvectors & Eigenvalues](#####Eigenvectors-and-Eigenvalues)
+    1. [Differential Calculus](###Differntial-calculus)
+        1. [Limits](####Limits)
+        1. [Derivatives](####Derivatives)
+        1. [Differential Power Rule](####Differential-power-rule)
+        1. [Differential Chain Rule](####Differential-chain-rule)
+    1. [Integral Calculus](###Integral-calculus)
+        1. [Antiderivative](####Antiderivative)
+        1. [Integral Power Rule](####Integral-power-rule)
+        1. [Indefinite Integral by Substitution](####Indefinite-integrals-by-substitution)
+        1. [Reimann Summation](####Reimann-summation)
+1. [Plotting](##Plotting)
+1. [SQL](##SQL-Databases)
+1. [Numpy](##Numpy)
+1. [SciPy](##SciPy)
+1. [Pandas](##Pandas)
+    1. [Groupby](###Groupby-object)
+1. [Vernacular](##Vernacular)
+    1. [Inputs](###Inputs)
+    1. [Outputs](###Output)
+1. [Algorithms](##Algorithms)
+1. [Python](##Python)
+    1. [Type Hint](###Type-hint)
+    1. [Classes](###Classes)
+        1. [Class Attribute, Inheritance, Method](####Class-attribute,-inheritance,-method)
+1. [References](##References)
+    1. [Machine Learning](###Machine-Learning)
+    1. [Statistics](###Statistics)
+    1. [Computer Science / Programming](###Computer-Science/Programming)
+    1. [Numpy / SciPy](###Numpy/Scipy)
+    1. [SQL](###SQL)
+    1. [Scikit-Learn](###scikit-learn)
+    1. [Extra](###Extra)
 
 ---
 
 ## Data Science Immersive Pacific
 
-[Student Resource Document](https://docs.google.com/document/d/1-O00uVHoBe7b7SFS6GpN50emo2Wuz9jG9fPsHNUKtbA/edit)
+* [Student Resource Document](https://docs.google.com/document/d/1-O00uVHoBe7b7SFS6GpN50emo2Wuz9jG9fPsHNUKtbA/edit)
+* [Galvanize GitHub](https://github.com/GalvanizeDataScience/course-outline/tree/21-05-DS-RFP_RFP1)
+
+---
+
+## Global
+
+* [Master Cheat Sheets](https://www.datacamp.com/community/data-science-cheatsheets)
+* [Visualizations of Probability and Statistics](https://seeing-theory.brown.edu/)
+
+---
 
 ## CLI / UNIX
 
-* [cli cheat sheet](https://github.com/GalvanizeDataScience/lectures/blob/RFP/unix/unix.pdf)
+* [CLI Cheat Sheet](https://github.com/GalvanizeDataScience/lectures/blob/RFP/unix/unix.pdf)
 
-### Basic Commands
+### Basic CLI Commands
 
 * make directory: `mkdir [folder name]`
 * create file: `touch [file name]`
@@ -49,9 +127,9 @@ Last Update: 24 Apr 2021
 
 ## Git & Github
 
-* [git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+* [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
-### Basic Commands
+### Basic Git Commands
 
 * initize repo: `git init`
 * clone repo: `git clone [url]`
@@ -67,7 +145,7 @@ Last Update: 24 Apr 2021
 * roll to previous commit: `git reset`
 * revert to previous commit: `git checkout [short hash] [file name]`
 
-#### Advanced Commands
+#### Advanced Git Commands
 
 * create a new repository on the command line
 
@@ -94,6 +172,8 @@ git push -u origin main
 
 ### Stats
 
+* [Stats Cheat Sheet](https://web.cs.elte.hu/~mesti/valszam/kepletek.pdf)
+
 #### Permutations
 
 * nPk = n! / (n - k)!
@@ -113,10 +193,13 @@ git push -u origin main
 #### Conditional probability
 
 * P(A|B) = P(AB) / P(B)
+* P(A&#8745;B) = P(A) * P(A|B) = P(B) * P(B|A) = P(B&#8745;A)
+* Law of Total Probability
+    * P(Z) = P(A) * P(A|Z) + P(b) * P(B|Z) + ... + P(n) * P(n|Z)
 
 #### Bayes' Theorem
 
-* P(Ak|B) = (P(B | A) * P(A)) / P(B)
+* P(A|B) = (P(B|A) * P(A)) / P(B)
 
 ```python
 def cookie_jar(a, b):
@@ -151,9 +234,16 @@ def cookie_jar(a, b):
     return (a * 0.5) / (a * 0.5 + b * 0.5)
 ```
 
+#### Probability mass function
+
+* f<sub>X</sub>(t) = P(X = t)
+    * Probability of returning a value for *X* equal to *t*
+
 #### Cumulative distribution function
 
 * [CDF resources](https://learn-2.galvanize.com/cohorts/868/blocks/248/content_files/07_Continuous_Prob_Dists/00_unit_overview.md)
+* F<sub>X</sub>(t) = P(X <= t)
+    * Probability of returning a value for *X* less or equal to *t*
 * CDF = &Sigma;<sub>lower</sub><sup>upper</sup> p(X = n)
 * Normal distribution Z-test: `norm.cdf(1.5, loc=1.25, scale=.46)`
 
@@ -162,7 +252,7 @@ def cookie_jar(a, b):
 * Discrete
     * E(X) = &Sigma;<sub>i</sub> (x<sub>i</sub> * p(x<sub>i</sub>))
 * Continuous
-    * E(X) = &int;<sub>-inf</sub><sup>inf</sup> (x * f(x))dx
+    * E(X) = &int;<sub>-&infin;</sub><sup>&infin;</sup> (x * f(x))dx
 
 #### Mean
 
@@ -171,7 +261,7 @@ def cookie_jar(a, b):
 #### Covariance
 
 * Estimates amount and direction Y moves as X changes
-* COV(X, Y) = 1/n * &Sigma;<sub>i=1</sub><sup>n</sup> (x<sub>i</sub> - <span STYLE="text-decoration:overline">x</span>)(y<sub>i</sub> - yBar)
+* COV(X, Y) = 1/n * &Sigma;<sub>i=1</sub><sup>n</sup> (x<sub>i</sub> - <span STYLE="text-decoration:overline">x</span>)(y<sub>i</sub> - <span STYLE="text-decoration:overline">y</span>)
 
 #### Variance
 
@@ -188,8 +278,9 @@ print((n*p) * (1-p))
 #### Correlation coefficient (r)
 
 * corr(X, Y) = [&Sigma;<sub>i=1</sub><sup>n</sup> (x<sub>i</sub> - <span STYLE="text-decoration:overline">x</span>)(y<sub>i</sub> - yBar)] / SQRT[(&Sigma;<sub>i=1</sub><sup>n</sup> (x<sub>i</sub> - <span STYLE="text-decoration:overline">x</span>) ** 2) * (&Sigma;<sub>i=1</sub><sup>n</sup> (y<sub>i</sub> - yBar) ** 2)
+* corr(X, Y) = COV(X, Y) / sqrt(VAR(X) * VAR(Y))
 
-#### Distributions
+#### Discrete Distributions
 
 * Quick sheet sheet on choosing distributions:
     * Q: what's the probability of flipping 10 heads in 25 coin flips?
@@ -200,12 +291,15 @@ print((n*p) * (1-p))
         * A: poisson
     * Q: what's the probability you wait more than a minute before flipping a heads, given that you flip an average of 10 heads per minute?
         * A: exponential
+    * Q: the chances of drawing four hearts from a standard pack of cards, drawing without replacement.
+        * A: Hyper-geometric
 
 * Bernoulli Trials
     * Must be a binary trial
-    * Probability Mass Function (PMF)
-        * P(X=x) = p<sup>x</sup>(1-p)<sup>1-x</sup> or
-        * P(X=x) = nCx * p<sup>x</sup>(1-p)<sup>n-x</sup>
+    * PMF
+        * f(k) = 1 - p if k = 0, p if k = 1
+    * CDF
+        * F(k) = 0 for k < 0, 1 - p for 0 <= k < 1, 1 for k >= 1
     * &mu; = p or np
     * &sigma;<su>2</sup> = p(1-p) or np(1-p())
 
@@ -217,9 +311,20 @@ def pmf(p, x, n):
 
 * Binomial Distribution
     * Distribution of the number of successes in N Bernoulli Trials
+    * PMF 
+        * P(X=x) = p<sup>x</sup>(1-p)<sup>1-x</sup> = nCx * p<sup>x</sup>(1-p)<sup>n-x</sup>
     * Number of trials must be fixed
     * Trials must be indepenedent
     * Each trial must be Bernoulli Trials
+
+![Normal](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/c548abe948b204550481654e32b9d4d4.png)
+
+* Poisson Distribution
+    * Has to contain a rate and a particular observation time 
+    * PMF
+        * f(k) = (&lambda;<sup>k</sup> * e<sup>-&lambda;</sup>) / k!
+            * k is the number of items we want to find probability of 
+            * &lambda; is the rate parameter
 
 * Geometric Distribution
     * Distribution of the number of trials before first success
@@ -229,13 +334,16 @@ def pmf(p, x, n):
 * Negative Binomial Distribution
     * Distribution of the number of trials before the ith success
 
-![Normal](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/c548abe948b204550481654e32b9d4d4.png)
-
 ![Empirical Rule](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/7e9688d48ba2b2e304969d13d8e4343d.png)
 
 ![Power Law](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/b2e012bf689efa1483f296698db3c0f0.png)
 
 ![Population and Sampling Distribution](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/3cd2651378842a8f25f7f70b26ab65a0.png)
+
+#### Continuous distributions
+
+* PDF
+    * F<sub>X</sub>(t) = P(x <= t) = &int;<sub>-&infin;</sub><sup>t</sup> f<sub>X</sub>(t) dt
 
 #### Central limit theorem (CLT)
 
@@ -405,7 +513,6 @@ p<sup>&rarr;</sup>*q<sup>&rarr;</sup> = ||p<sup>&rarr;</sup>|| * ||q<sup>&rarr;<
 
 sim(p<sup>&rarr;</sup>,q<sup>&rarr;</sup>) = cos&Theta; = p<sup>&rarr;</sup> * q<sup>&rarr;</sup> / ||p<sup>&rarr;</sup>|| * ||q<sup>&rarr;</sup>||
 
-
 ```python
 def cosine_sim(arr0, arr1):
     return (arr0 @ arr1) / (np.linalg.norm(arr0) * np.linalg.norm(arr1))
@@ -435,11 +542,11 @@ f'(x) = lim<sub>h&rarr;0</sub> (f(x+h) - f(x)) / h = lim<sub>&Delta;x&rarr;0</su
 
 ![Derivative](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/25aa43c1b0c93527738ab55c6ac65c6d.png)
 
-#### Power rule
+#### Differntial power rule
 
 d/dx x<sup>n</sup> = nx<sup>n-1</sup>
 
-#### Chain rule
+#### Differntial chain rule
 
 f(x) = h(x) * g(x) = h(g(x))
 
@@ -451,7 +558,7 @@ f'(x) = h'(g(x)) * g'(x) = du/dx = (du/dv) * (dv/dx)
 
 F(x) = &int;f(x) dx
 
-#### Power rule
+#### Integral power rule
 
 &int;x<sup>n</sup> dx = x<sup>n+1</sup> / (n+1) + C
 
@@ -580,13 +687,11 @@ def monte_carlo(f: callable, x_bound: float, y_bound: float, n: int) -> float:
     return 2 * area_dom * ratio
 
 
-
 # x_bound is 2 because that's the upper bound of integration
 # y_bound is std_nrm_pdf(0) which for the standard normal
 # distribution is the max value of std_nrm_pdf.
 x_b = 2.0
 y_b = std_nrm_pdf(0)
-
 
 print(monte_carlo(f=std_nrm_pdf, x_bound=x_b, y_bound=y_b, n=10000))
 ```
@@ -599,6 +704,7 @@ print(monte_carlo(f=std_nrm_pdf, x_bound=x_b, y_bound=y_b, n=10000))
 
 ## Plotting
 
+* [Plotting Cheat Sheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Python_Matplotlib_Cheat_Sheet.pdf)
 * [Pyplot Docs](https://matplotlib.org/stable/tutorials/introductory/pyplot.html)
 * Key parts
     * Title
@@ -753,6 +859,7 @@ ORDER BY other_column_name;
 
 ## Numpy
 
+* [Numpy Cheat Sheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Numpy_Python_Cheat_Sheet.pdf)
 * Remove rows w/ np.nan
 
 ```python
@@ -781,7 +888,13 @@ dbts_rmv_nan = diabetes[~mask]
 
 ---
 
+## SciPy
+
+---
+
 ## Pandas
+
+* [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 
 ### Groupby object
 
@@ -870,7 +983,7 @@ factorial(n: int) -> int
 
 ### Classes
 
-[magic methods cheat sheet](https://www.tutorialsteacher.com/python/magic-methods-in-python)
+[Magic Methods Cheat Sheet](https://www.tutorialsteacher.com/python/magic-methods-in-python)
 
 #### Class attribute, inheritance, method
 
