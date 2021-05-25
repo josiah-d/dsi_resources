@@ -21,6 +21,7 @@
       - [Conditional probability](#conditional-probability)
       - [Bayes' Theorem](#bayes-theorem)
       - [Probability mass function](#probability-mass-function)
+      - [Probability density function](#probability-density-function)
       - [Cumulative distribution function](#cumulative-distribution-function)
       - [Expected value](#expected-value)
       - [Mean](#mean)
@@ -45,8 +46,8 @@
     - [Differntial calculus](#differntial-calculus)
       - [Limits](#limits)
       - [Derivatives](#derivatives)
-      - [Differntial power rule](#differntial-power-rule)
-      - [Differntial chain rule](#differntial-chain-rule)
+      - [Differential power rule](#differential-power-rule)
+      - [Differential chain rule](#differential-chain-rule)
     - [Integral calculus](#integral-calculus)
       - [Antiderivative](#antiderivative)
       - [Integral power rule](#integral-power-rule)
@@ -55,7 +56,13 @@
   - [Plotting](#plotting)
   - [SQL Databases](#sql-databases)
   - [Numpy](#numpy)
+    - [Useful Functions](#useful-functions)
   - [SciPy](#scipy)
+    - [Discrete](#discrete)
+      - [Bernoulli](#bernoulli)
+      - [Binomial](#binomial)
+      - [Geometric](#geometric)
+  - [### Continuous](#-continuous)
   - [Pandas](#pandas)
     - [Groupby object](#groupby-object)
   - [Vernacular](#vernacular)
@@ -242,6 +249,23 @@ def cookie_jar(a, b):
 
 * f<sub>X</sub>(t) = P(X = t)
     * Probability of returning a value for *X* equal to *t*
+
+#### Probability density function
+
+* f<sub>𝑋</sub>(𝑡)=𝑃(𝑋≤𝑡)
+    * **Cumulative density** or **distribution** function (or sometimes **CDF** for short).  In a sense we could make precise, it says everything we can hope to say about the random variable.
+
+If the distribution function is differentiable, then it's derivative is called the **probability density function**. 
+
+$$ f_X(t) = F_X'(t) $$
+
+The density function satisfies the following property:
+
+  
+$$ P(t_0 < X \leq t_1) = \int_{t_0}^{t_1} f(t) dt $$P(t_0 < X \leq t_1) = \int_{t_0}^{t_1} f(t) dt 
+   * Probability of returning a value for *X* equal to *t*
+
+
 
 #### Cumulative distribution function
 
@@ -546,11 +570,11 @@ f'(x) = lim<sub>h&rarr;0</sub> (f(x+h) - f(x)) / h = lim<sub>&Delta;x&rarr;0</su
 
 ![Derivative](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/25aa43c1b0c93527738ab55c6ac65c6d.png)
 
-#### Differntial power rule
+#### Differential power rule
 
 d/dx x<sup>n</sup> = nx<sup>n-1</sup>
 
-#### Differntial chain rule
+#### Differential chain rule
 
 f(x) = h(x) * g(x) = h(g(x))
 
@@ -890,10 +914,64 @@ dbts_rmv_nan = diabetes[~mask]
 * creates an equally spaced grid of numbers between two endpoints.`np.linspace`
 * find index of the minimum: `np.argmin()`
 
+### Useful Functions
+
+**Multiplication**
+  |Function | Description |
+  | ---- | --- |
+  |  A @ D | Multiplication operator
+  | np.multiply(D,A) |	Multiplication
+  | np.dot(A,D)| Dot product
+  | np.vdot(A,D)|	Vector dot product
+  | np.inner(A,D)|Inner product
+  |np.outer(A,D)|	Outer product
+  |np.tensordot(A,D) |Tensor dot product
+  |np.kron(A,D)	| Kronecker product
+
+** Exponential **  
+|Function | Description |
+| ---- | --- |
+| linalg.expm(A) |Matrix exponential
+
 ---
 
 ## SciPy
+```
+import scipy.stats as sc
+```
 
+### Discrete
+
+Display the probability mass function (pmf):
+```
+x = np.arange(distribution_name.ppf(0.01, p),
+              distribution_name.ppf(0.99, p))
+ax.plot(x, distribution_name.pmf(x, p), 'bo', ms=8, label='distribution_name pmf')
+ax.vlines(x, 0, distribution_name.pmf(x, p), colors='b', lw=5, alpha=0.5)
+```
+
+#### Bernoulli
+```
+mean, var, skew, kurt = bernoulli.stats(p, moments='mvsk')
+```
+
+#### Binomial
+
+```
+mean, var, skew, kurt = binom.stats(n, p, moments='mvsk')
+```
+#### Geometric
+The probability mass function for geom is:
+
+for , 
+
+geom takes  as shape parameter, where  is the probability of a single success and  is the probability of a single failure.
+
+The probability mass function above is defined in the “standardized” form. To shift distribution use the loc parameter. Specifically, geom.pmf(k, p, loc) is identically equivalent to geom.pmf(k - loc, p).
+```
+mean, var, skew, kurt = geom.stats(p, moments='mvsk')
+```
+### Continuous
 ---
 
 ## Pandas
