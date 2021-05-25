@@ -32,6 +32,8 @@
       - [Continuous distributions](#continuous-distributions)
       - [Central limit theorem (CLT)](#central-limit-theorem-clt)
       - [Hypothesis testing](#hypothesis-testing)
+    - [Central Limit Theorem and Bootstrapping](#central-limit-theorem-and-bootstrapping)
+      - [Normal (Gaussian Distribution)](#normal-gaussian-distribution)
       - [Confidence intervals](#confidence-intervals)
     - [Linear algebra](#linear-algebra)
       - [Matrix multiplication](#matrix-multiplication)
@@ -69,8 +71,9 @@
     - [Inputs](#inputs)
     - [Output](#output)
   - [Algorithms](#algorithms)
-  - [Python](#python)
+- [Python](#python)
     - [Type hint](#type-hint)
+  - [Object Oriented Programming ( OOP )](#object-oriented-programming--oop-)
     - [Classes](#classes)
       - [Class attribute, inheritance, method](#class-attribute-inheritance-method)
   - [References](#references)
@@ -401,6 +404,34 @@ def pmf(p, x, n):
             * Accept H<sub>0</sub> when it is `False`
 * t-statistic
     * t = (<span STYLE="text-decoration:overline">x</span> - &mu;<sub>0</sub>) / (s / sqrt(n)) * t(n - 1)
+
+### Central Limit Theorem and Bootstrapping
+
+The **central limit theorem** asserts that as we take the mean of larger and larger samples, the distribution of sample means becomes more and more normal.
+
+Said differently, probabilistic statements about the mean of a large sample can be well approximated by assuming that the distribution of the sample means is a normal distribution with the correct mean and variance.
+
+#### Normal (Gaussian Distribution)
+
+The **normal** or **gaussian** distribution has a hallowed place in statistical folklore, mostly due to the **central limit theorem** which we will study shortly.
+
+The traditional notation for a normal random variable is $Z$ (instead of $X$, used for pretty much any other random variable).
+
+A normal random variable $Z$ has the distribution function
+
+$$ \Phi (t) = \frac{1}{\sqrt{2 \sigma^2 \pi}} \int_{- \infty}^t e^{ - \frac{(x - \mu)^2}{2 \sigma^2} } dx $$
+
+The $\Phi$ is, again, traditional notation for the distribution function of a normal random variable. 
+
+By differentiating, we get the density function of a normal random variable
+
+$$ \phi (t) = \frac{1}{\sqrt{2 \sigma^2 \pi}} e^{ - \frac{(x - \mu)^2}{2 \sigma^2} } $$
+
+The integral for the CDF of the normal distribution does *not* have a closed form.  In practice, the only way to compute values of the distribution function of a normal random variable is to use a computer.
+
+The $\mu$ and $\sigma$ are the **parameters of the distribution**.  
+
+Changing $\mu$ translates the distribution function to the right and left
 
 #### Confidence intervals
 
@@ -1046,7 +1077,7 @@ date_df.resample('W').mean()  # Action
 
 ---
 
-## Python
+# Python
 
 ### Type hint
 
@@ -1062,6 +1093,7 @@ Help on function factorial in module __main__:
 
 factorial(n: int) -> int
 ```
+## Object Oriented Programming ( OOP )
 
 ### Classes
 
