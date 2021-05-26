@@ -27,8 +27,9 @@
         1. [Correlation Coefficient](####Correlation-coefficient-(r))
         1. [Discrete Distributions](####Discrete-Distributions)
         1. [Continuous Distributions](####Continuous-distributions)
-        1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
         1. [Hypothesis Testing](####Hypothesis-testing)
+        1. [Bootstrapping](####Bootstrapping)
+        1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
         1. [Confidence Intervals](####Confidence-intervals)
     1. [Linear Algebra](###Linear-algebra)
         1. [Matrix Multiplication](####Matrixmultiplication)
@@ -345,11 +346,6 @@ def pmf(p, x, n):
 * PDF
     * F<sub>X</sub>(t) = P(x <= t) = &int;<sub>-&infin;</sub><sup>t</sup> f<sub>X</sub>(t) dt
 
-#### Central limit theorem (CLT)
-
-* &mu;<sub><span STYLE="text-decoration:overline">X</span></sub> = &mu;
-* &sigma;<sub><span STYLE="text-decoration:overline">X</span></sub> = &sigma; / sqrt(n)
-
 #### Hypothesis testing
 
 * &mu; == `True` population mean 
@@ -373,6 +369,17 @@ def pmf(p, x, n):
             * Accept H<sub>0</sub> when it is `False`
 * t-statistic
     * t = (<span STYLE="text-decoration:overline">x</span> - &mu;<sub>0</sub>) / (s / sqrt(n)) * t(n - 1)
+
+#### Bootstrapping
+
+* Random sampling with replacement of a fixed sample or population
+* assigns measures of accuracy to sample estimates
+    * e.g. bias, variance, confidence intervals, prediction error
+
+#### Central limit theorem (CLT)
+
+* &mu;<sub><span STYLE="text-decoration:overline">X</span></sub> = &mu;
+* &sigma;<sub><span STYLE="text-decoration:overline">X</span></sub> = &sigma; / sqrt(n)
 
 #### Confidence intervals
 
@@ -889,6 +896,8 @@ dbts_rmv_nan = diabetes[~mask]
 ---
 
 ## SciPy
+
+* [Distribution Docs](https://docs.scipy.org/doc/scipy/reference/stats.html)
 
 ---
 
