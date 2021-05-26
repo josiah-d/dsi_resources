@@ -87,6 +87,7 @@
 
 * [Master Cheat Sheets](https://www.datacamp.com/community/data-science-cheatsheets)
 * [Visualizations of Probability and Statistics](https://seeing-theory.brown.edu/)
+* [Python Functions Glossary](https://docs.python.org/3/library/functions.html)
 
 ---
 
@@ -129,6 +130,7 @@
 ## Git & Github
 
 * [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
+* [Git Online Learning Game](https://ohmygit.org/)
 
 ### Basic Git Commands
 
@@ -239,6 +241,23 @@ def cookie_jar(a, b):
 
 * f<sub>X</sub>(t) = P(X = t)
     * Probability of returning a value for *X* equal to *t*
+
+#### Probability density function
+
+* f<sub>𝑋</sub>(𝑡)=𝑃(𝑋≤𝑡)
+    * **Cumulative density** or **distribution** function (or sometimes **CDF** for short).  In a sense we could make precise, it says everything we can hope to say about the random variable.
+
+If the distribution function is differentiable, then it's derivative is called the **probability density function**. 
+
+$$ f_X(t) = F_X'(t) $$
+
+The density function satisfies the following property:
+
+  
+$$ P(t_0 < X \leq t_1) = \int_{t_0}^{t_1} f(t) dt $$P(t_0 < X \leq t_1) = \int_{t_0}^{t_1} f(t) dt 
+   * Probability of returning a value for *X* equal to *t*
+
+
 
 #### Cumulative distribution function
 
@@ -549,11 +568,11 @@ f'(x) = lim<sub>h&rarr;0</sub> (f(x+h) - f(x)) / h = lim<sub>&Delta;x&rarr;0</su
 
 ![Derivative](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/25aa43c1b0c93527738ab55c6ac65c6d.png)
 
-#### Differntial power rule
+#### Differential power rule
 
 d/dx x<sup>n</sup> = nx<sup>n-1</sup>
 
-#### Differntial chain rule
+#### Differential chain rule
 
 f(x) = h(x) * g(x) = h(g(x))
 
@@ -893,9 +912,61 @@ dbts_rmv_nan = diabetes[~mask]
 * creates an equally spaced grid of numbers between two endpoints.`np.linspace`
 * find index of the minimum: `np.argmin()`
 
+### Useful Functions
+
+**Multiplication**
+  |Function | Description |
+  | ---- | --- |
+  |  A @ D | Multiplication operator
+  | np.multiply(D,A) |	Multiplication
+  | np.dot(A,D)| Dot product
+  | np.vdot(A,D)|	Vector dot product
+  | np.inner(A,D)|Inner product
+  |np.outer(A,D)|	Outer product
+  |np.tensordot(A,D) |Tensor dot product
+  |np.kron(A,D)	| Kronecker product
+
+** Exponential **  
+|Function | Description |
+| ---- | --- |
+| linalg.expm(A) |Matrix exponential
+
 ---
 
 ## SciPy
+```
+import scipy.stats as sc
+```
+
+### Discrete
+
+Display the probability mass function (pmf):
+```
+x = np.arange(distribution_name.ppf(0.01, p),
+              distribution_name.ppf(0.99, p))
+ax.plot(x, distribution_name.pmf(x, p), 'bo', ms=8, label='distribution_name pmf')
+ax.vlines(x, 0, distribution_name.pmf(x, p), colors='b', lw=5, alpha=0.5)
+```
+
+#### Bernoulli
+
+```python
+mean, var, skew, kurt = bernoulli.stats(p, moments='mvsk')
+```
+
+#### Binomial
+
+```python
+mean, var, skew, kurt = binom.stats(n, p, moments='mvsk')
+```
+
+#### Geometric
+
+The probability mass function for geom is:
+
+for , 
+
+geom takes  as shape parameter, where  is the probability of a single success and  is the probability of a single failure.
 
 * [Distribution Docs](https://docs.scipy.org/doc/scipy/reference/stats.html)
 
@@ -973,7 +1044,7 @@ date_df.resample('W').mean()  # Action
 
 ---
 
-## Python
+# Python
 
 ### Type hint
 
@@ -989,6 +1060,7 @@ Help on function factorial in module __main__:
 
 factorial(n: int) -> int
 ```
+## Object Oriented Programming ( OOP )
 
 ### Classes
 
