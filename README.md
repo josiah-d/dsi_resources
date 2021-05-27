@@ -433,10 +433,150 @@ The $\mu$ and $\sigma$ are the **parameters of the distribution**.
 
 Changing $\mu$ translates the distribution function to the right and left
 
+When we are concerned with a **sample mean**, the central limit theorem lets us derive the **actual distribution of the sample mean**.  This allows us to calculate probabilities about the sample mean.
+
+We are going to make good use of this next lesson when we design statistical hypothesis tests.
+
 #### Confidence intervals
+
+```
+alpha = distribution_of_sample_minus_population_mean.ppf(0.025)
+print("Sample Mean: {:2.2}".format(sample_mean))
+print("95% confidence interval for the population mean: [{:2.2}, {:2.2}]".format(
+    sample_mean + alpha, sample_mean - alpha)
+    )
+```    
+```
+def compute_confidence_interval(data, confidence_width):
+    sample_mean = np.mean(data)
+    sample_varaince = np.var(data)
+    distribution_of_sample_minus_population_mean = stats.norm(0, np.sqrt(sample_varaince / len(data)))
+    alpha = distribution_of_sample_minus_population_mean.ppf(0.5 - (confidence_width / 2.0))
+    # Alpha is negative
+    return sample_mean + alpha, sample_mean - alpha
+```
+
+
+
 
 * Used when there are no preconceived notions and desire to use sampling to learn about the population
 ![95% CI](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/21125c3404bf0e14de6dcc164f71e5b1.png)
+
+* If we ***draw samples from the population*** and compute this confidence interval many, many times, then ***the computed interval should envelop*** the true population parameter ***approximately 95% of the time***.
+
+### Hypothesis Testing
+
+When assuming equal variance or not:
+If one sample has a greater sample size than the other, we **cannot assume** equal variance. 
+
+
+##### Welch's T-Test
+ **Welch's t-test**, or unequal variances t-test, is a two-sample location test which is used to test the hypothesis that two populations have equal means. It is named for its creator, Bernard Lewis Welch, and is an adaptation of Student's t-test, and is more reliable when the two samples have unequal variances and/or unequal sample sizes. These tests are often referred to as "unpaired" or "independent samples" t-tests, as they are typically applied when the statistical units underlying the two samples being compared are non-overlapping. 
+
+
+
+1. Take a Skeptical Stance, and Clearly State This Hypothesis
+   1. Example: There is **no difference** between the means of two samples.
+2. Create a Probablistic Model of the Stiuation Assuming the Null Hypothesis is True
+   1. Our measurements are **sample averages**, which, from the central limit theorem, we know are approximately normally distributed given the population average
+3. Convert to a sample statistic whose variance is expected to be $1$
+``` 
+def welch_test_statistic(sample_1, sample_2):
+    numerator = np.mean(sample_1) - np.mean(sample_2)
+    denominator_sq = (np.var(sample_1) / len(sample_1)) + (np.var(sample_2) / len(sample_2))
+    return numerator / np.sqrt(denominator_sq) 
+
+test_statistic = welch_test_statistic(sample_1, sample_2)
+print("Welch Test Statistic: {:2.2f}".format(test_statistic))
+
+```
+
+$$ \frac{\text{Difference in sample averages}}{\sqrt{\frac{\sigma^2_M}{25} + \frac{\sigma^2_N}{25}}} $$
+
+$$ \frac{\text{Difference in sample averages}}{\sqrt{\frac{\sigma^2_M}{25} + \frac{\sigma^2_N}{25}}} $$
+
+
+[Welche-Satterthwaite](https://en.wikipedia.org/wiki/Welch%E2%80%93Satterthwaite_equation) to compensate for SMALL sample sizes
+ ```
+ def welch_satterhwaithe_df(sample_1, sample_2):
+    ss1 = len(sample_1)
+    ss2 = len(sample_2)
+    df = (
+        ((np.var(sample_1)/ss1 + np.var(sample_2)/ss2)**(2.0)) / 
+        ((np.var(sample_1)/ss1)**(2.0)/(ss1 - 1) + (np.var(sample_2)/ss2)**(2.0)/(ss2 - 1))
+    )
+    return df
+
+df = welch_satterhwaithe_df(sample_1, sample_2)
+print("Degrees of Freedom for Welch's Test: {:2.2f}".format(df))
+
+x = np.linspace(-3, 3, num=250)
+
+fig, ax = plt.subplots(1, figsize=(16, 3))
+students = stats.t(df)
+ax.plot(x, students.pdf(x), linewidth=2, label="Degree of Freedom: {:2.2f}".format(df))
+ax.legend()
+ax.set_title("Distribution of Welsh's Test Statistic Under the Null Hypothesis")
+```
+
+4. Decide how Suprised You Need to Be to Reject Your Skeptical Assumption
+   1. To be reasonably skeptical,  take 𝛼 = 0.05
+
+```
+p_value = students.cdf(test_statistic) + (1 - students.cdf(-test_statistic))
+print("p-value for different average kickflip height: {:2.2f}".format(p_value))
+
+```
+5. Calculate the Probability of Finding a Result Equally or More Extreme than Actually Observed Assuming the Probabilistic Model You Created.
+
+
+
+#### Student's T Test
+The t-distribution always has mean $0$ and varaince $1$, and has one parameter, the **degrees of freedom**.  Smaller degrees of freedom have heavyer tails, with the distribution beoming more normal as the degrees of freedom gets larger.
+
+The $T$ statistic only has a t-distribution **under the assumption that the population distributions are Normal**!  We did *not* have to assume this for *any* other test, but when we need to estimate the variance of the population, we need more structure!
+
+If the population is very non-normal, the properties of the t-test **will fail**.  You must have some legitimate a-priori reason to believe the populations are approximately normal to use a t-test!
+
+For this reason, many statisticians advise **AGAINST** t-tests these days, preferring non-parametric tests like the signed rank test.
+
+#### Non-Parametrics: Mann-Whitney Signed Rank Test
+The [Mann-Whitney U-test](https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test) is a modern alternative to the classical Student's and Welch's t-test that makes good use of modern computing power.  It makes **no** distributional assumptions (unlike the t-test, which assumes the populations are normal), and can always be used instead.
+
+
+The idea of the Mann-Whitney test is to view this as a competition. We let each of Sample 1's outputs compete against all of Sample 2's outputs, and see how many times it wins (i.e. how many of Sample 1's outputs it beats). We then add these number of wins up over all of Sample 1's outputs.
+
+```
+
+def count_winning_pairs(sample_1, sample_2):
+    sample_1, sample_2 = np.array(sample_1), np.array(sample_2)
+    n_total_wins = 0
+    for x in sample_1:
+        n_wins = np.sum(x > sample_2) + 0.5*np.sum(x == sample_2)
+        n_total_wins += n_wins
+    return n_total_wins
+
+
+nick_wins = count_winning_pairs(nick_heights, matt_heights)
+matt_wins = count_winning_pairs(matt_heights, nick_heights)
+print("Number of Nick Wins: {}".format(nick_wins))
+print("Number of Matt Wins: {}".format(matt_wins))
+
+```
+
+##### The U-Test
+
+
+
+To test the hypothesis that Nick is better than Matt, we need to adopt a Null hypothesis. The Null for the Mann-Whitney test is directly related to which competitor is better.
+
+    $H_0$: Matt's Kickflips are equaliy likely to be higher than Nicks as the other way around. I.e.
+
+$$P(\text{Height Matt Kickflip} &gt; \text{Height Nick Kickflip}) = 0.5$$
+
+As is usual, assuming this null hypothesis is true, the rank-sum statistic assumes a known (but complicated) distribution. This time we can't write down the distribution in any explicit way, but python can calculate p-values using it.
+
+
 
 ### Linear algebra
 
@@ -500,7 +640,7 @@ A<sup>-1</sup>Ax<sup>&rarr;</sup> = A<sup>-1</sup>b<sup>&rarr;</sup>
 Ix<sup>&rarr;</sup> = x<sup>&rarr;</sup> = A<sup>-1</sup>b<sup>&rarr;</sup>
 
 * Where
-    * A is a matrix of coeff
+    * ["A] is a matrix of coeff
     * x<sup>&rarr;</sup> is an unknown vector
     * b<sup>&rarr;</sup> is there product
     * A<sup>-1</sup> is an inverse matrix
@@ -1081,7 +1221,10 @@ date_df.resample('W').mean()  # Action
 
 ### Type hint
 
-```python
+python
+
+%timeit adds a timer for the computing time when running the code
+```
 def factorial(n: int) -> int:
     prod = 1
     for num in range(1, n + 1):
