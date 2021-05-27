@@ -55,10 +55,12 @@
         1. [Reimann Summation](####Reimann-summation)
 1. [Plotting](##Plotting)
 1. [SQL](##SQL-Databases)
-1. [Numpy](##Numpy)
-1. [SciPy](##SciPy)
-1. [Pandas](##Pandas)
-    1. [Groupby](###Groupby-object)
+1. [Python Libraries](#Python-Libraries)
+    1. [Numpy](##Numpy)
+    1. [SciPy](##SciPy)
+        1. [Distributions](###Distributions)
+    1. [Pandas](##Pandas)
+        1. [Groupby](###Groupby-object)
 1. [Vernacular](##Vernacular)
     1. [Inputs](###Inputs)
     1. [Outputs](###Output)
@@ -1075,6 +1077,7 @@ ORDER BY other_column_name;
     ```
 
 ---
+# Python Libraries
 
 ## Numpy
 
@@ -1131,6 +1134,61 @@ dbts_rmv_nan = diabetes[~mask]
 import scipy.stats as sc
 ```
 
+### Distributions
+
+#### Normal
+A normal continuous random variable.
+The location (``loc``) keyword specifies the mean.
+The scale (``scale``) keyword specifies the standard deviation.
+
+As an instance of the `rv_continuous` class, `norm` object inherits from it
+a collection of generic methods (see below for the full list),
+and completes them with details specific for this particular distribution.
+```
+sc.norm
+mean, var = norm.stats(x)
+
+Methods
+-------
+rvs(loc=0, scale=1, size=1, random_state=None)
+    Random variates.
+pdf(x, loc=0, scale=1)
+    Probability density function.
+logpdf(x, loc=0, scale=1)
+    Log of the probability density function.
+cdf(x, loc=0, scale=1)
+    Cumulative distribution function.
+logcdf(x, loc=0, scale=1)
+    Log of the cumulative distribution function.
+sf(x, loc=0, scale=1)
+    Survival function  (also defined as ``1 - cdf``, but `sf` is sometimes more accurate).
+logsf(x, loc=0, scale=1)
+    Log of the survival function.
+ppf(q, loc=0, scale=1)
+    Percent point function (inverse of ``cdf`` --- percentiles).
+isf(q, loc=0, scale=1)
+    Inverse survival function (inverse of ``sf``).
+moment(n, loc=0, scale=1)
+    Non-central moment of order n
+stats(loc=0, scale=1, moments='mv')
+    Mean('m'), variance('v'), skew('s'), and/or kurtosis('k').
+entropy(loc=0, scale=1)
+    (Differential) entropy of the RV.
+fit(data, loc=0, scale=1)
+    Parameter estimates for generic data.
+expect(func, args=(), loc=0, scale=1, lb=None, ub=None, conditional=False, **kwds)
+    Expected value of a function (of one argument) with respect to the distribution.
+median(loc=0, scale=1)
+    Median of the distribution.
+mean(loc=0, scale=1)
+    Mean of the distribution.
+var(loc=0, scale=1)
+    Variance of the distribution.
+std(loc=0, scale=1)
+    Standard deviation of the distribution.
+interval(alpha, loc=0, scale=1)
+    Endpoints of the range that contains alpha percent of the distribution
+```
 ### Discrete
 
 Display the probability mass function (pmf):
