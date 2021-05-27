@@ -31,6 +31,8 @@
         1. [Bootstrapping](####Bootstrapping)
         1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
         1. [Confidence Intervals](####Confidence-intervals)
+        1. [Hypothesis Testing](####Hypothesis-Testing)
+        1. [Statistical Power](####Statistical-Power)
     1. [Linear Algebra](###Linear-algebra)
         1. [Matrix Multiplication](####Matrixmultiplication)
         1. [Identity Matrix](####Identity-matrix-(I<sub>m</sub>))
@@ -389,6 +391,11 @@ def pmf(p, x, n):
 * t-statistic
     * t = (<span STYLE="text-decoration:overline">x</span> - &mu;<sub>0</sub>) / (s / sqrt(n)) * t(n - 1)
 
+
+When assuming equal variance or not:
+If one sample has a greater sample size than the other, we **cannot assume** equal variance. 
+
+
 #### Bootstrapping
 
 * Random sampling with replacement of a fixed sample or population
@@ -430,11 +437,6 @@ def compute_confidence_interval(data, confidence_width):
 ![95% CI](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/21125c3404bf0e14de6dcc164f71e5b1.png)
 
 * If we ***draw samples from the population*** and compute this confidence interval many, many times, then ***the computed interval should envelop*** the true population parameter ***approximately 95% of the time***.
-
-### Hypothesis Testing
-
-When assuming equal variance or not:
-If one sample has a greater sample size than the other, we **cannot assume** equal variance. 
 
 
 ##### Welch's T-Test
@@ -498,7 +500,7 @@ print("p-value for different average kickflip height: {:2.2f}".format(p_value))
 
 
 
-#### Student's T Test
+##### Student's T Test
 The t-distribution always has mean $0$ and varaince $1$, and has one parameter, the **degrees of freedom**.  Smaller degrees of freedom have heavyer tails, with the distribution beoming more normal as the degrees of freedom gets larger.
 
 The $T$ statistic only has a t-distribution **under the assumption that the population distributions are Normal**!  We did *not* have to assume this for *any* other test, but when we need to estimate the variance of the population, we need more structure!
@@ -542,6 +544,57 @@ To test the hypothesis that Nick is better than Matt, we need to adopt a Null hy
 $$P(\text{Height Matt Kickflip} &gt; \text{Height Nick Kickflip}) = 0.5$$
 
 As is usual, assuming this null hypothesis is true, the rank-sum statistic assumes a known (but complicated) distribution. This time we can't write down the distribution in any explicit way, but python can calculate p-values using it.
+
+#### Statistical Power
+
+The relation between the power and the rejection level alpha:
+-  As we decrease alpha we decrease the false positive rate, increase the false negative rate, and thus decrease the power. We can observe the effect of this by varying the rejection level in our pictures.
+
+The relationship between effect size and power is straightforward: 
+- it is easier to detect larger effects. That is, as we increase the effect size we would like to detect, our power to detect that effect increases. Said differently, it is much harder to detect minute effects than large ones.
+
+The statistical power of a test is **affected by a few different things:**
+1. The rejection level alpha.
+2. The effect size we wish to detect.
+3. The size of the sample we collect. 
+
+As we **collect more data**, we tighten our estimate of the sample mean (or whatever sample statistic we happen to be studying) as the standard error of the estimate decreases. This tends to better separate the null and alternate distributions, which increases the power.
+
+##### Calculating the Power for an Experiment
+
+We first need to calculate the rejection threshold by using the percentile function of the null distribution, then compute the area under the alternate distribution to the right of the threshold.
+
+```
+def compute_power(n, sigma, alpha, mu0, mua):
+    standard_error = sigma / n**0.5
+    h0 = scs.norm(mu0, standard_error)
+    ha = scs.norm(mua, standard_error)
+    critical_value = h0.ppf(1 - alpha)
+    power = 1 - ha.cdf(critical_value)
+    return power
+```
+
+##### Calculating the Sample Size Needed to Obtain a Given Power
+
+
+```
+def sample_size_needed_for_power(alpha, power, mu0, mua, sigma):
+    standard_normal = scs.norm(0, 1)
+    beta = 1 - power
+    numerator = sigma * (standard_normal.ppf(1 - alpha) - standard_normal.ppf(beta))
+    denominator = mua - mu0
+    return math.ceil((numerator / denominator) ** 2)
+
+alpha, mu0, mua, sigma = 0.05, 0.0, 0.1, 0.5
+powers = [0.5, 0.75, 0.9, 0.99, 0.999]
+
+for power in powers:
+    print("Sample Size Needed to Achive Power {:2.3f}: {}".format(
+        power, 
+        sample_size_needed_for_power(alpha, power, mu0, mua, sigma)))
+```
+
+
 
 
 
