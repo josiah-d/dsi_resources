@@ -5,85 +5,74 @@
 
 ## Table of Contents
 
-- [Master Notes](#master-notes)
-  - [Table of Contents](#table-of-contents)
-  - [Data Science Immersive Pacific](#data-science-immersive-pacific)
-  - [Global](#global)
-  - [CLI / UNIX](#cli--unix)
-    - [Basic CLI Commands](#basic-cli-commands)
-  - [Git & Github](#git--github)
-    - [Basic Git Commands](#basic-git-commands)
-      - [Advanced Git Commands](#advanced-git-commands)
-  - [Maths](#maths)
-    - [Stats](#stats)
-      - [Permutations](#permutations)
-      - [Combinations](#combinations)
-      - [Conditional probability](#conditional-probability)
-      - [Bayes' Theorem](#bayes-theorem)
-      - [Probability mass function](#probability-mass-function)
-      - [Probability density function](#probability-density-function)
-      - [Cumulative distribution function](#cumulative-distribution-function)
-      - [Expected value](#expected-value)
-      - [Mean](#mean)
-      - [Covariance](#covariance)
-      - [Variance](#variance)
-      - [Correlation coefficient (r)](#correlation-coefficient-r)
-      - [Discrete Distributions](#discrete-distributions)
-      - [Continuous distributions](#continuous-distributions)
-      - [Central limit theorem (CLT)](#central-limit-theorem-clt)
-      - [Hypothesis testing](#hypothesis-testing)
-    - [Central Limit Theorem and Bootstrapping](#central-limit-theorem-and-bootstrapping)
-      - [Normal (Gaussian Distribution)](#normal-gaussian-distribution)
-      - [Confidence intervals](#confidence-intervals)
-    - [Linear algebra](#linear-algebra)
-      - [Matrix multiplication](#matrix-multiplication)
-      - [Identity matrix (I<sub>m</sub>)](#identity-matrix-isubmsub)
-      - [Matrix rank & independence](#matrix-rank--independence)
-      - [Invertible matrix](#invertible-matrix)
-      - [Matrix rotation](#matrix-rotation)
-      - [Matrix reflection](#matrix-reflection)
-      - [Systems of equations with linear algebra](#systems-of-equations-with-linear-algebra)
-      - [Vector similiarity](#vector-similiarity)
-        - [Eigenvectors and Eigenvalues](#eigenvectors-and-eigenvalues)
-    - [Differntial calculus](#differntial-calculus)
-      - [Limits](#limits)
-      - [Derivatives](#derivatives)
-      - [Differential power rule](#differential-power-rule)
-      - [Differential chain rule](#differential-chain-rule)
-    - [Integral calculus](#integral-calculus)
-      - [Antiderivative](#antiderivative)
-      - [Integral power rule](#integral-power-rule)
-      - [Indefinite integrals by substitution](#indefinite-integrals-by-substitution)
-      - [Reimann summation](#reimann-summation)
-  - [Plotting](#plotting)
-  - [SQL Databases](#sql-databases)
-  - [Numpy](#numpy)
-    - [Useful Functions](#useful-functions)
-  - [SciPy](#scipy)
-    - [Discrete](#discrete)
-      - [Bernoulli](#bernoulli)
-      - [Binomial](#binomial)
-      - [Geometric](#geometric)
-  - [### Continuous](#-continuous)
-  - [Pandas](#pandas)
-    - [Groupby object](#groupby-object)
-  - [Vernacular](#vernacular)
-    - [Inputs](#inputs)
-    - [Output](#output)
-  - [Algorithms](#algorithms)
-- [Python](#python)
-    - [Type hint](#type-hint)
-  - [Object Oriented Programming ( OOP )](#object-oriented-programming--oop-)
-    - [Classes](#classes)
-      - [Class attribute, inheritance, method](#class-attribute-inheritance-method)
-  - [References](#references)
-    - [Machine Learning](#machine-learning)
-    - [Statistics](#statistics)
-    - [Computer Science/Programming](#computer-scienceprogramming)
-    - [Numpy/Scipy](#numpyscipy)
-    - [SQL](#sql)
-    - [scikit-learn](#scikit-learn)
-    - [Extra](#extra)
+1. [Data Science Immersive Pacific](#Data-Science-Immersive-Pacific)
+1. [Global](#Global)
+1. [CLI / UNIX](#CLI-/-UNIX)
+    1. [Basic Commands](#Basic-CLI-Commands)
+1. [Git & Github](#Git-&-Github)
+    1. [Basic Commands](#Basic-Git-Commands)
+    1. [Advanced Commands](#Advanced-Git-Commands)
+1. [Maths](#Maths)
+    1. [Stats](###Stats)
+        1. [Permutations](####Permutations)
+        1. [Combinations](####Combinations)
+        1. [Conditional probability](####Conditional-probability)
+        1. [Bayes' Theorem](####-Bayes'-Theorem)
+        1. [Probability mass function](####Probability-mass-function)
+        1. [Cumulative distribution function](####Cumulative-distribution-function)
+        1. [Expected Value](####Expected-value)
+        1. [Mean](####Mean)
+        1. [Covariance](####Covariance)
+        1. [Variance](####Variance)
+        1. [Correlation Coefficient](####Correlation-coefficient-(r))
+        1. [Discrete Distributions](####Discrete-Distributions)
+        1. [Continuous Distributions](####Continuous-distributions)
+        1. [Hypothesis Testing](####Hypothesis-testing)
+        1. [Bootstrapping](####Bootstrapping)
+        1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
+        1. [Confidence Intervals](####Confidence-intervals)
+    1. [Linear Algebra](###Linear-algebra)
+        1. [Matrix Multiplication](####Matrixmultiplication)
+        1. [Identity Matrix](####Identity-matrix-(I<sub>m</sub>))
+        1. [Matrix Rank & Independence](####Matrix-rank-&-independence)
+        1. [Invertible Matrix](####Invertible-matrix)
+        1. [Matrix Rotation](####Matrix-rotation)
+        1. [Matrix Reflection](####Matrix-reflection)
+        1. [Systems of Equations](####Systems-of-equations-with-linear-algebra)
+        1. [Vector Similarity](####Vector-similiarity)
+            1. [Eigenvectors & Eigenvalues](#####Eigenvectors-and-Eigenvalues)
+    1. [Differential Calculus](###Differntial-calculus)
+        1. [Limits](####Limits)
+        1. [Derivatives](####Derivatives)
+        1. [Differential Power Rule](####Differential-power-rule)
+        1. [Differential Chain Rule](####Differential-chain-rule)
+    1. [Integral Calculus](###Integral-calculus)
+        1. [Antiderivative](####Antiderivative)
+        1. [Integral Power Rule](####Integral-power-rule)
+        1. [Indefinite Integral by Substitution](####Indefinite-integrals-by-substitution)
+        1. [Reimann Summation](####Reimann-summation)
+1. [Plotting](##Plotting)
+1. [SQL](##SQL-Databases)
+1. [Numpy](##Numpy)
+1. [SciPy](##SciPy)
+1. [Pandas](##Pandas)
+    1. [Groupby](###Groupby-object)
+1. [Vernacular](##Vernacular)
+    1. [Inputs](###Inputs)
+    1. [Outputs](###Output)
+1. [Algorithms](##Algorithms)
+1. [Python](##Python)
+    1. [Type Hint](###Type-hint)
+    1. [Classes](###Classes)
+        1. [Class Attribute, Inheritance, Method](####Class-attribute,-inheritance,-method)
+1. [References](##References)
+    1. [Machine Learning](###Machine-Learning)
+    1. [Statistics](###Statistics)
+    1. [Computer Science / Programming](###Computer-Science/Programming)
+    1. [Numpy / SciPy](###Numpy/Scipy)
+    1. [SQL](###SQL)
+    1. [Scikit-Learn](###scikit-learn)
+    1. [Extra](###Extra)
 
 ---
 
@@ -376,11 +365,6 @@ def pmf(p, x, n):
 * PDF
     * F<sub>X</sub>(t) = P(x <= t) = &int;<sub>-&infin;</sub><sup>t</sup> f<sub>X</sub>(t) dt
 
-#### Central limit theorem (CLT)
-
-* &mu;<sub><span STYLE="text-decoration:overline">X</span></sub> = &mu;
-* &sigma;<sub><span STYLE="text-decoration:overline">X</span></sub> = &sigma; / sqrt(n)
-
 #### Hypothesis testing
 
 * &mu; == `True` population mean 
@@ -405,33 +389,16 @@ def pmf(p, x, n):
 * t-statistic
     * t = (<span STYLE="text-decoration:overline">x</span> - &mu;<sub>0</sub>) / (s / sqrt(n)) * t(n - 1)
 
-### Central Limit Theorem and Bootstrapping
+#### Bootstrapping
 
-The **central limit theorem** asserts that as we take the mean of larger and larger samples, the distribution of sample means becomes more and more normal.
+* Random sampling with replacement of a fixed sample or population
+* assigns measures of accuracy to sample estimates
+    * e.g. bias, variance, confidence intervals, prediction error
 
-Said differently, probabilistic statements about the mean of a large sample can be well approximated by assuming that the distribution of the sample means is a normal distribution with the correct mean and variance.
+#### Central limit theorem (CLT)
 
-#### Normal (Gaussian Distribution)
-
-The **normal** or **gaussian** distribution has a hallowed place in statistical folklore, mostly due to the **central limit theorem** which we will study shortly.
-
-The traditional notation for a normal random variable is $Z$ (instead of $X$, used for pretty much any other random variable).
-
-A normal random variable $Z$ has the distribution function
-
-$$ \Phi (t) = \frac{1}{\sqrt{2 \sigma^2 \pi}} \int_{- \infty}^t e^{ - \frac{(x - \mu)^2}{2 \sigma^2} } dx $$
-
-The $\Phi$ is, again, traditional notation for the distribution function of a normal random variable. 
-
-By differentiating, we get the density function of a normal random variable
-
-$$ \phi (t) = \frac{1}{\sqrt{2 \sigma^2 \pi}} e^{ - \frac{(x - \mu)^2}{2 \sigma^2} } $$
-
-The integral for the CDF of the normal distribution does *not* have a closed form.  In practice, the only way to compute values of the distribution function of a normal random variable is to use a computer.
-
-The $\mu$ and $\sigma$ are the **parameters of the distribution**.  
-
-Changing $\mu$ translates the distribution function to the right and left
+* &mu;<sub><span STYLE="text-decoration:overline">X</span></sub> = &mu;
+* &sigma;<sub><span STYLE="text-decoration:overline">X</span></sub> = &sigma; / sqrt(n)
 
 When we are concerned with a **sample mean**, the central limit theorem lets us derive the **actual distribution of the sample mean**.  This allows us to calculate probabilities about the sample mean.
 
@@ -1122,27 +1089,27 @@ ax.vlines(x, 0, distribution_name.pmf(x, p), colors='b', lw=5, alpha=0.5)
 ```
 
 #### Bernoulli
-```
+
+```python
 mean, var, skew, kurt = bernoulli.stats(p, moments='mvsk')
 ```
 
 #### Binomial
 
-```
+```python
 mean, var, skew, kurt = binom.stats(n, p, moments='mvsk')
 ```
+
 #### Geometric
+
 The probability mass function for geom is:
 
 for , 
 
 geom takes  as shape parameter, where  is the probability of a single success and  is the probability of a single failure.
 
-The probability mass function above is defined in the “standardized” form. To shift distribution use the loc parameter. Specifically, geom.pmf(k, p, loc) is identically equivalent to geom.pmf(k - loc, p).
-```
-mean, var, skew, kurt = geom.stats(p, moments='mvsk')
-```
-### Continuous
+* [Distribution Docs](https://docs.scipy.org/doc/scipy/reference/stats.html)
+
 ---
 
 ## Pandas
