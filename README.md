@@ -399,6 +399,9 @@ If one sample has a greater sample size than the other, we **cannot assume** equ
 
 
 #### Bootstrapping
+We generally have one fixed dataset, which we view as a single sample from the population. The population is the object that interests us, and the sample is the lens through which we get to view it.
+
+***The idea behind the bootstrap*** is that the empirical distribution of the sample should be our best approximation to the distribution of the population the sample is drawn from. We can illistrate this by comapring the emperical distribution functions of samples to the actual population distribution functions:
 
 * Random sampling with replacement of a fixed sample or population
 * assigns measures of accuracy to sample estimates
@@ -548,6 +551,18 @@ $$P(\text{Height Matt Kickflip} &gt; \text{Height Nick Kickflip}) = 0.5$$
 As is usual, assuming this null hypothesis is true, the rank-sum statistic assumes a known (but complicated) distribution. This time we can't write down the distribution in any explicit way, but python can calculate p-values using it.
 
 #### Statistical Power
+
+There's a **variety of perspectives** on the definition of power. Bullard describes multiple ways to interpret power correctly:
+
+- Power is the probability of rejecting the null hypothesis when, in fact, it is false. 
+- Power is the probability of making a correct decision (to reject the null hypothesis) when the null hypothesis is false.
+Power is the probability that a test of significance will pick up on an effect that is present.
+- Power is the probability that a test of significance will detect a deviation from the null hypothesis, should such a deviation exist.
+- Power is the probability of avoiding a Type II error.
+
+Mathematically, power is 1 – beta. The power of a hypothesis test is between 0 and 1; if the power is close to 1, the hypothesis test is very good at detecting a false null hypothesis. Beta is commonly set at 0.2, but may be set by the researchers to be smaller.
+
+Consequently, power may be as low as 0.8, but may be higher. Powers lower than 0.8, while not impossible, would typically be considered too low for most areas of research. 
 
 The relation between the power and the rejection level alpha:
 -  As we decrease alpha we decrease the false positive rate, increase the false negative rate, and thus decrease the power. We can observe the effect of this by varying the rejection level in our pictures.
