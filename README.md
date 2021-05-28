@@ -31,8 +31,12 @@
         1. [Bootstrapping](####Bootstrapping)
         1. [Central Limit Theorem](####Central-limit-theorem-(CLT))
         1. [Confidence Intervals](####Confidence-intervals)
+<<<<<<< HEAD
+        1. [Power](####Power)
+=======
         1. [Hypothesis Testing](####Hypothesis-Testing)
         1. [Statistical Power](####Statistical-Power)
+>>>>>>> 0b4ecbe68ddad4a98b9e121c960eb31056df6e15
     1. [Linear Algebra](###Linear-algebra)
         1. [Matrix Multiplication](####Matrixmultiplication)
         1. [Identity Matrix](####Identity-matrix-(I<sub>m</sub>))
@@ -69,6 +73,7 @@
     1. [Type Hint](###Type-hint)
     1. [Classes](###Classes)
         1. [Class Attribute, Inheritance, Method](####Class-attribute,-inheritance,-method)
+1. [Docker](##Docker)
 1. [References](##References)
     1. [Machine Learning](###Machine-Learning)
     1. [Statistics](###Statistics)
@@ -371,6 +376,8 @@ def pmf(p, x, n):
 
 #### Hypothesis testing
 
+* Answers: How often will we detect a difference when one does not, in reality, exist?
+
 * &mu; == `True` population mean 
 * &mu;<sub>0</sub> == `hypothesized` population mean 
 
@@ -441,6 +448,17 @@ def compute_confidence_interval(data, confidence_width):
 * Used when there are no preconceived notions and desire to use sampling to learn about the population
 ![95% CI](https://s3.us-west-2.amazonaws.com/forge-production.galvanize.com/content/21125c3404bf0e14de6dcc164f71e5b1.png)
 
+<<<<<<< HEAD
+#### Power
+
+* Answers: how often will we detect a difference when one really does exist?
+
+```python
+def compute_power(n, sigma, alpha, mu0, mua):
+    standard_error = sigma / n**0.5
+    h0 = stats.norm(mu0, standard_error)
+    ha = stats.norm(mua, standard_error)
+=======
 * If we ***draw samples from the population*** and compute this confidence interval many, many times, then ***the computed interval should envelop*** the true population parameter ***approximately 95% of the time***.
 
 
@@ -586,21 +604,32 @@ def compute_power(n, sigma, alpha, mu0, mua):
     standard_error = sigma / n**0.5
     h0 = scs.norm(mu0, standard_error)
     ha = scs.norm(mua, standard_error)
+>>>>>>> 0b4ecbe68ddad4a98b9e121c960eb31056df6e15
     critical_value = h0.ppf(1 - alpha)
     power = 1 - ha.cdf(critical_value)
     return power
 ```
 
+<<<<<<< HEAD
+```python
+def sample_size_needed_for_power(alpha, power, mu0, mua, sigma):
+    standard_normal = stats.norm(0, 1)
+=======
 ##### Calculating the Sample Size Needed to Obtain a Given Power
 
 
 ```
 def sample_size_needed_for_power(alpha, power, mu0, mua, sigma):
     standard_normal = scs.norm(0, 1)
+>>>>>>> 0b4ecbe68ddad4a98b9e121c960eb31056df6e15
     beta = 1 - power
     numerator = sigma * (standard_normal.ppf(1 - alpha) - standard_normal.ppf(beta))
     denominator = mua - mu0
     return math.ceil((numerator / denominator) ** 2)
+<<<<<<< HEAD
+```
+
+=======
 
 alpha, mu0, mua, sigma = 0.05, 0.0, 0.1, 0.5
 powers = [0.5, 0.75, 0.9, 0.99, 0.999]
@@ -615,6 +644,7 @@ for power in powers:
 
 
 
+>>>>>>> 0b4ecbe68ddad4a98b9e121c960eb31056df6e15
 ### Linear algebra
 
 * Grab length of the vector: `np.linalg.norm(x)`
@@ -1376,6 +1406,61 @@ class CargoFlights(Flights):
         super().__init__(flight_num, arrival_time)
         self.cargo_weight = cargo_weight
 ```
+
+---
+
+## Docker
+
+[Docker Hub](https://hub.docker.com/)
+
+* Spin up image: `docker run -it ubuntu bash`
+* Kill image: `exit`
+* Launch web server: `docker run -d -p PORT:80 nignx`
+* Check running containers: `docker ps`
+* Check all containers: `docker ps -a`
+* Check images: `docker image ls`
+* Access container: `docker exec -it container_name bash`
+* Update image: `apt-get update`
+* Install packages: `apt-get install package_name`
+* Remove container: `docker rm container_name_OR_first_3_digits -f`
+* Start a volume: `docker run -d --name container_name -v "$PWD":/usr/share/nginx/html/ -p 8844:80 ngingx`
+* Stop container: `docker stop container_name`
+* Start container: `docker start container_name`
+
+## Build containers & images
+
+1. Create directory
+1. Create file named `Dockerfile`
+1. Create `requirements.txt`
+    1. Add dependencies
+1. Create python program named `app.py`
+1. Add the following:
+
+    ```zsh
+    # Use an official Python runtime as a parent 
+    imageFROM python:3.9-slim
+    # Set the working directory to /app
+    WORKDIR /app
+    # Copy the current directory contents into the container at /app
+    COPY . /app
+    # Install any needed packages specified in requirements.txt
+    RUN pip install --trusted-host pypi.python.org -r requirements.txt
+    # Make port 80 available to the world outside this container
+    EXPOSE 80
+    # Define environment variable
+    ENV NAME World
+    # Run app.py when the container launches
+    CMD ["python", "app.py"]
+    ```
+
+1. Build image: `docker build -t image_name .`
+1. Name image: `docker tag image_name username/repository:tag`
+    1. username:  Your username in Docker’s public registry 
+    1. repository: Your chosen name for the repository 
+    1. tag: image name
+1. Share app: `docker push username/repository:tag`
+
+* Run image: `docker run -p 4000:80 username/repository:tag`
 
 ---
 
