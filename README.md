@@ -54,6 +54,7 @@
         1. [Reimann Summation](####Reimann-summation)
 1. [Plotting](##Plotting)
 1. [SQL](##SQL-Databases)
+1. [Mongo](##Mongo)
 1. [Python Libraries](#Python-Libraries)
     1. [Numpy](##Numpy)
         1. [Useful Functions](####Useful-Functions)
@@ -74,6 +75,9 @@
         1. [Class Attribute, Inheritance, Method](####Class-attribute,-inheritance,-method)
 1. [Docker](##Docker)
     1. [Build containers & images](###Build-containers-&-images)
+1. [Spark](##Spark)
+1. [AWS](##AWS)
+1. [Webscrape](##Webscrape)
 1. [References](##References)
     1. [Machine Learning](###Machine-Learning)
     1. [Statistics](###Statistics)
@@ -899,6 +903,17 @@ ORDER BY other_column_name;
 
 ---
 
+## Mongo
+
+* [Mongo Cheat Sheet](https://developer.mongodb.com/quickstart/cheat-sheet/)
+* Find: `db.db_name.find()`
+* Update: `db.db_name.update()`
+* Replace array: `$set: {key: values}`
+* Add to array: `$push: {key: values}`
+* Creates if does not exist, builds if it doesnt: `{upsert: True}`
+
+---
+
 ## Python Libraries
 
 ### Numpy
@@ -1185,7 +1200,7 @@ class CargoFlights(Flights):
 * Check running containers: `docker ps`
 * Check all containers: `docker ps -a`
 * Check images: `docker image ls`
-* Access container: `docker exec -it container_name bash`
+* Access/Open container: `docker exec -it container_name bash`
 * Update image: `apt-get update`
 * Install packages: `apt-get install package_name`
 * Remove container: `docker rm container_name_OR_first_3_digits -f`
@@ -1227,6 +1242,60 @@ class CargoFlights(Flights):
 1. Share app: `docker push username/repository:tag`
 
 * Run image: `docker run -p 4000:80 username/repository:tag`
+
+---
+
+## Spark
+
+* [Spark Cheat Sheet](https://s3.amazonaws.com/assets.datacamp.com/blog_assets/PySpark_Cheat_Sheet_Python.pdf)
+* Lazy evalutation
+* RDDs are similar to Numpy arrays
+* Dataframes are RDDs with a schema
+    * Schemas are metadata
+
+---
+
+## AWS
+
+* [AWS Cheat Sheet](https://devhints.io/awscli)
+* List buckets: `aws s3 ls`
+* List bucket contents: `aws s3 ls s3://BUCKETNAME/`
+* List contents of a directory:`aws s3 ls s3://BUCKETNAME/FOLDERNAME/`
+* Create a new bucket: `aws s3 mb s3://BUCKETNAME`
+* Delete an empty bucket: `aws s3 rb s3://BUCKETNAME`
+* Delete a non-empty bucket: `aws s3 rb s3://BUCKETNAME --force`
+* Upload a local file to a bucket: `aws s3 cp LOCALFILE s3://BUCKETNAME/`
+* To download a `FILENAME` to the current directory: `aws s3 cp s3://BUCKETNAME/FILENAME .`
+    * Use the `--recursive` flag for copying directories
+    * Use `rm` and `mv` the same way
+
+* ![Cloud Computing Infrastructure](https://miro.medium.com/max/814/1*vvGpN1GMH0iQKC_GsTRH7Q.png)
+
+---
+
+## Webscrape
+
+* [Beautiful Soup Cheat Sheet](http://akul.me/blog/2016/beautifulsoup-cheatsheet/)
+
+```python
+from bs4 import BeautifulSoup as BS
+import requests
+import shutil
+
+web_path = 'https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.\
+            m570.l1313&_nkw=golf+clubs&_sacat=0'
+html_page = requests.get(web_path)
+soup = BS(html_page.content, 'html.parser')
+imgs = soup.select('.s-item__image-img')
+img_paths = [img['src'] for img in imgs]
+
+for i, img_path in enumerate(img_paths):
+    r = requests.get(img_path, stream=True)
+    if r.status_code == 200:
+        with open(f'images/{i}.png', 'wb') as f:
+            r.raw.decode_content = True
+            shutil.copyfileobj(r.raw, f)
+```
 
 ---
 
