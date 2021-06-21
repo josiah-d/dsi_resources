@@ -3,8 +3,6 @@
 
 # Master Notes
 
-TEST TEXT
-
 ## Table of Contents
 
 1. [Data Science Immersive Pacific](#Data-Science-Immersive-Pacific)
@@ -80,6 +78,8 @@ TEST TEXT
 1. [Spark](##Spark)
 1. [AWS](##AWS)
 1. [Webscrape](##Webscrape)
+1. [Machine Learning](##MachineLearning)
+1. [Complexity](##Complexity)
 1. [References](##References)
     1. [Machine Learning](###Machine-Learning)
     1. [Statistics](###Statistics)
@@ -103,6 +103,7 @@ TEST TEXT
 * [Master Cheat Sheets](https://www.datacamp.com/community/data-science-cheatsheets)
 * [Visualizations of Probability and Statistics](https://seeing-theory.brown.edu/)
 * [Python Functions Glossary](https://docs.python.org/3/library/functions.html)
+* [Data Science Cheat Sheet](https://www.datasciencecentral.com/profiles/blogs/a-free-self-paced-learning-path-for-machinelearning-and)
 
 ---
 
@@ -1298,6 +1299,28 @@ for i, img_path in enumerate(img_paths):
             r.raw.decode_content = True
             shutil.copyfileobj(r.raw, f)
 ```
+
+---
+
+## Machine Learning
+
+* Ireducible error: The irreducible error is the error inherent in any value. Even if we had all possible data (the "population") and could build the best possible model, we can't predict values exactly.
+* Bias: The bias is the difference between the expected value of y (averaging out the irreducible error) and the expected prediction of the model (that is, we had a large number of training dataset and we built a model using the same procedure on each one, and then averaged the predictions). If we predict the training set well we will generally have low bias.
+    * Low bias, fits the training data well
+* Variance: The variance of the model over all possible training sets, which is a measure of how far the training-set model is from what it would be if trained on all the data. If we had access to entire population of data, we would have no variance.
+    * High variance, does not extrapolate to non-trained data
+
+* Supervised
+    * Regression
+        * Numerical target
+    * Classification
+        * Categorical target
+* Unsupervised
+* Reinforcement
+
+## Complexity
+
+![Complexity Cheat Sheet](https://www.bigocheatsheet.com/img/big-o-cheat-sheet-poster.png)
 
 ---
 
